@@ -1,0 +1,229 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+:root {
+    --corBase: #3347B0;
+    --corBaseEscura: #283888;
+    --corBaseSelecionado: #202e75;
+    --branco: #FFFFFF;
+    --preto: #000000;
+    --corAuxiliar: #E5B657;
+    --cinza: #BCC2E5;
+    --fonte: "Roboto", sans-serif;
+    --corTextoAuxiliar: #3347B0;
+}
+
+body {
+    font-family: var(--fonte);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+header {
+    background-color: var(--corBase);
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10%;
+}
+
+.botaoHeader {
+    color: var(--branco);
+    display: flex;
+    gap: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 150px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudoInicial {
+    display: flex;
+    gap: 13vh;
+}
+
+.colunaInicial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.textoComeco img {
+    width: 50vh;
+}
+
+.botaoHeader i {
+    font-size: 2rem;
+}
+
+.telaInicial {
+    width: 100%;
+    height: calc(100vh - 270px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.textoComeco {
+    gap: 200px;
+}
+
+.textoComeco h1 {
+    font-weight: 300;
+    font-size: 6rem
+}
+
+.textoComeco span {
+    color: var(--corBase);
+    font-weight: bold;
+}
+
+.studentImg {
+    height: 100%
+}
+
+.containerItensCurso {
+    width: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 50px;
+}
+
+.itemCurso {
+    background-color: var(--corBase);
+    width: 100%;
+    height: 250px;
+    color: var(--branco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 4rem;
+    gap: 20px;
+    border: 1px solid var(--preto);
+    cursor: pointer;
+    -webkit-box-shadow: 11px 11px 4px 1px rgba(0,0,0,0.33);
+    box-shadow: 11px 11px 4px 1px rgba(0,0,0,0.33);
+}
+
+footer{
+    display: flex;
+    background-color: var(--corBase);
+    height: 170px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10%;
+    color: var(--branco);
+}
+
+.contatosContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 0px;
+}
+
+.linkFooter {
+    text-decoration: none;
+    color: var(--branco);
+}
+
+.contato {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    cursor: pointer;
+}
+
+.contato i {
+    font-size: 25px;
+}
+
+.creditos {
+    font-size: 20px;
+}
+
+.redesContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.rede {
+    font-size: 2rem;
+    border: 2px solid var(--branco);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.telaPrincipal {
+    width: 100%;
+    height: calc(100vh - 270px);
+}
+
+.headerAuxiliar {
+    background-color: var(--cinza);
+    height: 80px;
+}
+
+.menuStatus {
+    background-color: var(--corBase);
+    width: 10vh;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    position: absolute;
+}
+
+.menuStatusItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--branco);
+    font-weight: bolder;
+    width: 100%;
+    height: 40px;
+    padding: 0px 10px;
+    cursor: pointer;
+}
+
+.headerAuxiliar h3 {
+    color: var(--corTextoAuxiliar);
+    font-weight: 500;
+}
+
+.menuStatusItem.selecionado {
+    background-color: var(--corBaseSelecionado);
+}
+
+.menuStatusItem:hover {
+    background-color: var(--corBaseEscura);
+}
+
+.menuStatusItem:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.menuStatusItem:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
