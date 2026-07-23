@@ -227,3 +227,30 @@ footer{
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+
+.legendaContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.itemLegenda {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.amostraCor {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.amostraCor.roxo {
+    background-color: var(--corBase);
+}
+
+.amostraCor.amarelo {
+    background-color: var(--corAuxiliar);
+}
