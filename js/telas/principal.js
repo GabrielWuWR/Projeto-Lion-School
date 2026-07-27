@@ -36,7 +36,7 @@ export async function renderizarTelaPrincipal(curso) {
     if(alunos != false) {
         alunos.forEach((aluno)=>{
             let itemAluno = criar.ELEMENTO('div', ['itemAluno'], aluno.id);
-            console.log(aluno.status)
+
             if(aluno.status = "cursando") {
                itemAluno.classList.add('cursando');
             } else if(aluno.status == 'finalizado') {
