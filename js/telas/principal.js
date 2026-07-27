@@ -1,83 +1,71 @@
-
-import { getAllCursos } from "./rotas/telaInicial.js";
 import { criar } from "../utils/geradores.js";
+import { getAllAlunos } from "../rotas/telaPrincipal.js";
 
 `
-<div class="conteudoInicial">
-            <div class="colunaInicial textoComeco">
-                <div>
-                    <h1>Escolha um <span>curso</span></h1>
-                    <h1>para gerenciar</h1>
-                </div>
-                <img src="./img/devices.svg" alt="">
-            </div>
+<h1 class="nomeCurso" id="nomeCurso">Desenvolvimento de sistemas</h1>
 
-            <div class="colunaInicial">
-                <img class="studentImg" src="./img/studant.svg" alt="">
-            </div>
-
-            <div class="colunaInicial containerItensCurso" id="containerCursos">
-                <div class="itemCurso">
-                    <i class="fa-solid fa-code"></i>
-                    <p>DS</p>
+        <div class="containerAlunos">
+            <div class="containerItens">
+                <div class="itemAluno cursando">
+                    <img src="./img/fotoTeste.png" alt="">
+                    <p class="nomeUsuario">HÉLIDA BENTO DE OLIVEIRA LINS</p>
                 </div>
-                <div class="itemCurso">
-                    <i class="fa-solid fa-network-wired"></i>
-                    <p>REDE</p>
+                <div class="itemAluno finalizado">
+                    <img src="./img/fotoTeste.png" alt="">
+                    <p class="nomeUsuario">HÉLIDA BENTO DE OLIVEIRA LINS</p>
                 </div>
             </div>
-        </div>
         </div>
 
 `
 
-function criarCardCurso(curso) {
-    try {
-        let containerCard = criar.ELEMENTO('div', ['itemCurso'], curso.id);
-
-        let icone = criar.ELEMENTO('img', ['imagemCurso']);
-        icone.src = curso.icon;
-        containerCard.append(icone);
-
-        let nome = criar.ELEMENTO('p');
-        nome.textContent = curso.sigla;
-        containerCard.append(nome);
-
-        containerCard.addEventListener('click', () => {
-            alert(`indo para o curso ${curso.nome}`);
-        });
-
-        return containerCard;
-    } catch (error) {
-        console.error(error);
-        return false;
-    }
-
-}
-
-async function renderizarCardsCursos() {
-    let containerCursos = document.getElementById('containerCursos');
-    let cursos = await getAllCursos();
-
-    if (cursos != false) {
-        containerCursos.innerHTML = '';
-
-        cursos.forEach((curso) => {
-            let htmlCurso = criarCardCurso(curso);
-
-            if (htmlCurso != false) {
-                containerCursos.append(htmlCurso);
-            }
-        });
-    }
-}
-
-async function renderizarTela() {
+export async function renderizarTelaPrincipal(curso) {
     let main = document.getElementById('containerGeral');
-    main.className = 'telaInicial';
+    main.className = 'telaPrincipal';
 
-    let conteudoInicial = criar.ELEMENTO('div', ['conteudoInicial']);
+    curso = curso[0];
+    let container = document.createDocumentFragment();
 
-    let colunaUm = criar.ELEMENTO('div', ['colunaInicial', 'textoComeco']);
-    let divSolta = criar.ELEMENTO('div');
-}
+    let nomeCurso = criar.ELEMENTO('h1', ['nomeCurso'], "nome");
+    nomeCurso.textContent = curso.nome;
+
+    let containerAlunos = criar.ELEMENTO('div', ['containerAlunos']);
+    let containerItens = criar.ELEMENTO('div', ['containerItens']);
+    let alunos = await getAllAlunos(curso.id);
+    
+    if(alunos != false) {
+        alunos.forEach((aluno)=>{
+            let itemAluno = criar.ELEMENTO('div', ['itemAluno'], aluno.id);
+            console.log(aluno.status)
+            if(aluno.status = "cursando") {
+               itemAluno.classList.add('cursando');
+            } else if(aluno.status == 'finalizado') {
+                itemAluno.classList.add('finalizado')
+            }
+            
+            let imagemAluno = criar.ELEMENTO('img');
+            imagemAluno.src = aluno.foto;
+            itemAluno.append(imagemAluno);
+
+            let nomeAluno = criar.ELEMENTO('p', ['nomeUsuario']);
+            nomeAluno.textContent = aluno.nome;
+            itemAluno.append(nomeAluno);
+
+            itemAluno.addEventListener('click', ()=>{
+                alert(`abrindo informações de ${aluno.nome}`)
+            })
+
+            containerItens.append(itemAluno);
+        });
+
+        containerAlunos.append(containerItens);
+    } else {
+        let textoErroAlunos = criar.ELEMENTO('h1');
+        textoErroAlunos.textContent = 'Não consegui carregar os alunos desse curso.'
+        containerAlunos.append(textoErroAlunos);
+    }
+
+    container.append(nomeCurso, containerItens);
+
+    return container;
+};

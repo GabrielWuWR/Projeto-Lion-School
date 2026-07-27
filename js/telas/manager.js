@@ -21,7 +21,7 @@ export const tela = {
      * @param {string} nome - O nome da tela que você deseja.
      * @returns {Promise<boolean>} Retorna true se a tela carregou ou false caso de erro.
      */
-    MUDAR: async function(nome) {
+    MUDAR: async function(nome, parametros = []) {
         const container = document.getElementById('containerGeral');
 
         if(!this._telasRegistradas[nome]) {
@@ -32,7 +32,7 @@ export const tela = {
         container.innerHTML = "";
         container.className = "";
 
-        const conteudo = await this._telasRegistradas[nome]();
+        const conteudo = await this._telasRegistradas[nome](parametros);
 
         if(conteudo) {
             container.append(conteudo);

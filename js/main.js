@@ -1,7 +1,8 @@
 'use strict';
 
 import { tela } from "./telas/manager.js";
-import { criar } from "./utils/geradores.js";
+import { renderizarTelaInicial } from "./telas/inicial.js";
+import { renderizarTelaPrincipal } from "./telas/principal.js";
 
 const botaoStatus = document.getElementById('botaoStatus');
 const containerStatus = document.getElementById('containerStatus');
@@ -17,11 +18,7 @@ document.addEventListener('click', (clique) => {
     containerStatus.classList.remove('visivel');
 });
 
-tela.CRIAR("teste", async ()=>{
-    let divTeste = criar.ELEMENTO('div');
+tela.CRIAR("inicial", renderizarTelaInicial);
+tela.CRIAR("principal", renderizarTelaPrincipal);
 
-    divTeste.innerHTML = "<h1>Testando as coisas....</h1>";
-    return divTeste;
-})
-
-tela.MUDAR("teste");
+tela.MUDAR("inicial");
