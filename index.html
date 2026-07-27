@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/main.js" defer></script>
+    <script src="./js/main.js" defer type="module"></script>
     <title>Lion School</title>
 </head>
 
@@ -25,16 +25,18 @@
     </header>
     <header class="headerAuxiliar">
         <div class="statusContainer">
-            <h3>Status:</h3>
+            <h3 id="botaoStatus">Status</h3>
 
-            <div class="menuStatus">
-                <div class="menuStatusItem">
-                    <p>Finalizado</p>
+            <div class="menuStatus invisivel" id="containerStatus">
+                <div class="menuStatusItem selecionado">
+                    <p>Todos</p>
                     <i class="fa-solid fa-check"></i>
                 </div>
                 <div class="menuStatusItem">
+                    <p>Finalizado</p>
+                </div>
+                <div class="menuStatusItem">
                     <p>Cursando</p>
-                    <i class="fa-solid fa-check"></i>
                 </div>
             </div>
         </div>
@@ -48,42 +50,86 @@
             </div>
 
             <div class="itemLegenda"></div>
-                <div class="amostraCor amarelo"></div>
-                <p>Finalizado</p>
-            </div>
+            <div class="amostraCor amarelo"></div>
+            <p>Finalizado</p>
+        </div>
         </div>
     </header>
 
-    <main class="telaInicial">
-        <div class="conteudoInicial">
-            <div class="colunaInicial textoComeco">
-                <div>
-                    <h1>Escolha um <span>curso</span></h1>
-                    <h1>para gerenciar</h1>
-                </div>
-                <img src="./img/devices.svg" alt="">
-            </div>
-            <div class="colunaInicial">
-                <img class="studentImg" src="./img/studant.svg" alt="">
-            </div>
-
-            <div class="colunaInicial containerItensCurso">
-                <div class="itemCurso">
-                    <i class="fa-solid fa-code"></i>
-                    <p>DS</p>
-                </div>
-                <div class="itemCurso">
-                    <i class="fa-solid fa-network-wired"></i>
-                    <p>REDE</p>
-                </div>
-            </div>
-        </div>
-        </div>
-
+    <main class="telaInicial" id="containerGeral">
+        
     </main>
 
     <main class="telaPrincipal">
+        <h1 class="nomeCurso" id="nomeCurso">Desenvolvimento de sistemas</h1>
 
+        <div class="containerAlunos">
+            <div class="containerItens">
+                <div class="itemAluno cursando">
+                    <img src="./img/fotoTeste.png" alt="">
+                    <p class="nomeUsuario">HÉLIDA BENTO DE OLIVEIRA LINS</p>
+                </div>
+                <div class="itemAluno finalizado">
+                    <img src="./img/fotoTeste.png" alt="">
+                    <p class="nomeUsuario">HÉLIDA BENTO DE OLIVEIRA LINS</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <main class="telaInformacoes">
+        <div class="containerAlunoInformacao">
+            <img src="./img/fotoTeste.png" alt="">
+            <h1>NOME USUARIO</h1>
+        </div>
+
+        <div class="containerAlunoNotas">
+            <div class="barraContainer">
+                <p class="numero">90</p>
+                <div class="barra">
+                    <div class="barraPreenchimento positivo"></div>
+                </div>
+                <p class="materia">SOP</p>
+            </div>
+            <div class="barraContainer">
+                <p class="numero">90</p>
+                <div class="barra">
+                    <div class="barraPreenchimento negativo"></div>
+                </div>
+                <p class="materia">IRP</p>
+            </div>
+
+            <div class="barraContainer">
+                <p class="numero">90</p>
+                <div class="barra">
+                    <div class="barraPreenchimento positivo"></div>
+                </div>
+                <p class="materia">LIMA</p>
+            </div>
+
+            <div class="barraContainer">
+                <p class="numero">90</p>
+                <div class="barra">
+                    <div class="barraPreenchimento positivo"></div>
+                </div>
+                <p class="materia">BD</p>
+            </div>
+            <div class="barraContainer">
+                <p class="numero">90</p>
+                <div class="barra">
+                    <div class="barraPreenchimento negativo"></div>
+                </div>
+                <p class="materia">PBE</p>
+            </div>
+            <div class="barraContainer">
+                <p class="numero">90</p>
+                <div class="barra">
+                    <div class="barraPreenchimento medio"></div>
+                </div>
+                <p class="materia">PFE</p>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -103,7 +149,7 @@
             <a href="" class="linkFooter">
                 <div class="contato">
                     <i class="fa-solid fa-location-dot"></i>
-                    <p>Rua tcc, 211,  Centro, Jandira</p>
+                    <p>Rua tcc, 211, Centro, Jandira</p>
                 </div>
             </a>
         </div>
