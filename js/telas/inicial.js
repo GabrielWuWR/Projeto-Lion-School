@@ -1,6 +1,7 @@
 
 import { getAllCursos } from "../rotas/telaInicial.js";
 import { criar } from "../utils/geradores.js";
+import { deletarHeaderAuxiliar } from "./principal.js";
 import { tela } from "./manager.js";
 
 `
@@ -57,8 +58,15 @@ function criarCardCurso(curso) {
 }
 
 export async function renderizarTelaInicial() {
+    deletarHeaderAuxiliar();
     let main = document.getElementById('containerGeral');
     main.className = 'telaInicial';
+
+    let botaoVoltar = document.getElementById('acaoHeader');
+    botaoVoltar.textContent = "Sair";
+    botaoVoltar.addEventListener('click', () => {
+        alert('saindo');
+    });
 
     let conteudoInicial = criar.ELEMENTO('div', ['conteudoInicial']);
 
