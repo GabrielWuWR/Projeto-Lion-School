@@ -58,20 +58,25 @@ function criarCardCurso(curso) {
 }
 
 export async function renderizarTelaInicial() {
-    deletarHeaderAuxiliar();
+   // deletarHeaderAuxiliar();
     let main = document.getElementById('containerGeral');
     main.className = 'telaInicial';
 
     let botaoVoltar = document.getElementById('acaoHeader');
-    botaoVoltar.textContent = "Sair";
+    let textoBotaoVoltar = document.getElementById('headerTexto');
+    let novoBotao = botaoVoltar.cloneNode(true);
+    botaoVoltar.replaceWith(novoBotao);
+    botaoVoltar = novoBotao;
+
+    textoBotaoVoltar.textContent = "Sair";
     botaoVoltar.addEventListener('click', () => {
-        alert('saindo');
+        window.close();
     });
 
     let conteudoInicial = criar.ELEMENTO('div', ['conteudoInicial']);
 
     let colunaUm = criar.ELEMENTO('div', ['colunaInicial', 'textoComeco']);
-    let divSolta = criar.ELEMENTO('div');
+    let divSolta = criar.ELEMENTO('div', ['titulo']);
 
     let textoComecoParteUm = criar.ELEMENTO('h1');
     textoComecoParteUm.textContent = 'Escolha um ';

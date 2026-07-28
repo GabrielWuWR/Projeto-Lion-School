@@ -52,7 +52,10 @@ function criarItemDesempenho(desempenho, index = 0) {
     return barraContainer;
 }
 
-export async function renderizarTelaAluno(alunoId, cursoId) {
+export async function renderizarTelaAluno(parametros) {
+    let alunoId = parametros[0];
+    let curso = parametros[1];
+
     deletarHeaderAuxiliar();
     let main = document.getElementById('containerGeral');
     main.className = 'telaInformacoes';
@@ -60,9 +63,14 @@ export async function renderizarTelaAluno(alunoId, cursoId) {
     let aluno = await getAlunoInformacoes(alunoId);
 
     let botaoVoltar = document.getElementById('acaoHeader');
-    botaoVoltar.textContent = "Voltar";
+    let textoBotaoVoltar = document.getElementById('headerTexto');
+    let novoBotao = botaoVoltar.cloneNode(true);
+    botaoVoltar.replaceWith(novoBotao);
+    botaoVoltar = novoBotao;
+
+    textoBotaoVoltar.textContent = "Voltar";
     botaoVoltar.addEventListener('click', () => {
-        tela.MUDAR('principal', [cursoId]);
+        tela.MUDAR('principal', [curso]);
     });
 
     if (aluno != false) {

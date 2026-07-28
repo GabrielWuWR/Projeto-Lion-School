@@ -21,7 +21,6 @@ import { tela } from "./manager.js";
 `
 
 async function criarHeaderAuxiliar(idCurso) {
-    console.log(idCurso)
     let header = criar.ELEMENTO('header', ['headerAuxiliar']);
     let statusContainer = criar.ELEMENTO('div', ['statusContainer']);
 
@@ -128,13 +127,13 @@ async function criarHeaderAuxiliar(idCurso) {
 
 export function deletarHeaderAuxiliar() {
     let header = document.querySelector('.headerAuxiliar');
-    
+
     if (header) {
         header.remove();
     }
 }
 
-function criarItemAluno(aluno, index = 0, idCurso) {
+function criarItemAluno(aluno, index = 0, curso) {
     let itemAluno = criar.ELEMENTO('div', ['itemAluno'], aluno.id);
 
     if (aluno.status == "cursando") {
@@ -152,7 +151,7 @@ function criarItemAluno(aluno, index = 0, idCurso) {
     itemAluno.append(nomeAluno);
 
     itemAluno.addEventListener('click', () => {
-        tela.MUDAR("aluno", [aluno.id, idCurso]);
+        tela.MUDAR("aluno", [aluno.id, curso]);
     })
 
     setTimeout(() => {
@@ -174,10 +173,16 @@ export async function renderizarTelaPrincipal(curso) {
     }
 
     let botaoVoltar = document.getElementById('acaoHeader');
-    botaoVoltar.textContent = "Voltar";
-    botaoVoltar.addEventListener('click', ()=>{
+    let textoBotaoVoltar = document.getElementById('headerTexto');
+    let novoBotao = botaoVoltar.cloneNode(true);
+    botaoVoltar.replaceWith(novoBotao);
+    botaoVoltar = novoBotao;
+
+    textoBotaoVoltar.textContent = "Voltar";
+    botaoVoltar.addEventListener('click', () => {
         tela.MUDAR('inicial');
     });
+
 
     main.before(headerAuxiliar);
 
@@ -193,7 +198,7 @@ export async function renderizarTelaPrincipal(curso) {
     if (alunos != false) {
         containerItens.innerHTML = "";
         alunos.forEach((aluno, index) => {
-            let itemAluno = criarItemAluno(aluno, index, curso.id);
+            let itemAluno = criarItemAluno(aluno, index, curso);
             containerItens.append(itemAluno);
         });
 
