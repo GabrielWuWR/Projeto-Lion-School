@@ -59,15 +59,15 @@ export async function renderizarTelaAluno(parametros) {
     deletarHeaderAuxiliar();
     let main = document.getElementById('containerGeral');
     main.className = 'telaInformacoes';
-    
+
     let aluno = await getAlunoInformacoes(alunoId);
 
     let botaoVoltar = document.getElementById('acaoHeader');
-    let textoBotaoVoltar = document.getElementById('headerTexto');
     let novoBotao = botaoVoltar.cloneNode(true);
     botaoVoltar.replaceWith(novoBotao);
     botaoVoltar = novoBotao;
 
+    let textoBotaoVoltar = botaoVoltar.querySelector('#headerTexto');
     textoBotaoVoltar.textContent = "Voltar";
     botaoVoltar.addEventListener('click', () => {
         tela.MUDAR('principal', [curso]);

@@ -120,7 +120,34 @@ async function criarHeaderAuxiliar(idCurso) {
 
     legendaContainer.append(tituloLegenda, itemLegendaCursando, itemLegendaFinalizado);
 
-    header.append(statusContainer, legendaContainer);
+    let legendaDinamica = criar.ELEMENTO('div', ['legendaDinamica']);
+    
+    let botaoLegenda = criar.ELEMENTO('h3', [], 'botaoLegenda');
+    botaoLegenda.textContent = 'LEGENDA';
+    
+    let containerLegenda = criar.ELEMENTO('div', ['legenda'], 'containerLegenda');
+    
+    let textoCursandoDinamico = criar.ELEMENTO('p', ['cursando']);
+    textoCursandoDinamico.textContent = 'Cursando';
+    
+    let textoFinalizadoDinamico = criar.ELEMENTO('p', ['finalizado']);
+    textoFinalizadoDinamico.textContent = 'Finalizado';
+    
+    containerLegenda.append(textoCursandoDinamico, textoFinalizadoDinamico);
+    legendaDinamica.append(botaoLegenda, containerLegenda);
+
+    botaoLegenda.addEventListener('click', () => {
+        containerLegenda.classList.toggle('visivel');
+    });
+
+    document.addEventListener('click', (clique) => {
+        if (botaoLegenda.contains(clique.target) || containerLegenda.contains(clique.target)) {
+            return;
+        }
+        containerLegenda.classList.remove('visivel');
+    });
+
+    header.append(statusContainer, legendaContainer, legendaDinamica);
 
     return header;
 }
@@ -173,11 +200,11 @@ export async function renderizarTelaPrincipal(curso) {
     }
 
     let botaoVoltar = document.getElementById('acaoHeader');
-    let textoBotaoVoltar = document.getElementById('headerTexto');
     let novoBotao = botaoVoltar.cloneNode(true);
     botaoVoltar.replaceWith(novoBotao);
     botaoVoltar = novoBotao;
 
+    let textoBotaoVoltar = botaoVoltar.querySelector('#headerTexto');
     textoBotaoVoltar.textContent = "Voltar";
     botaoVoltar.addEventListener('click', () => {
         tela.MUDAR('inicial');

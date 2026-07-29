@@ -58,16 +58,16 @@ function criarCardCurso(curso) {
 }
 
 export async function renderizarTelaInicial() {
-   // deletarHeaderAuxiliar();
+    deletarHeaderAuxiliar();
     let main = document.getElementById('containerGeral');
     main.className = 'telaInicial';
 
     let botaoVoltar = document.getElementById('acaoHeader');
-    let textoBotaoVoltar = document.getElementById('headerTexto');
     let novoBotao = botaoVoltar.cloneNode(true);
     botaoVoltar.replaceWith(novoBotao);
     botaoVoltar = novoBotao;
 
+    let textoBotaoVoltar = botaoVoltar.querySelector('#headerTexto');
     textoBotaoVoltar.textContent = "Sair";
     botaoVoltar.addEventListener('click', () => {
         window.close();
@@ -108,7 +108,7 @@ export async function renderizarTelaInicial() {
 
     let colunaTres = criar.ELEMENTO('div', ['colunaInicial', 'containerItensCurso'], 'containerCursos');
     let cursos = await getAllCursos();
-    
+
     if (cursos != false) {
         cursos.forEach((curso) => {
             let htmlCurso = criarCardCurso(curso);
